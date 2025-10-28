@@ -11,15 +11,15 @@ datasource db {
 model User {
   id String @id @default(uuid())
 
-  email String @unique
+  email    String @unique
   password String
 
   displayName String
-  picture String?
+  picture     String?
 
   role UserRole @default(REGULAR)
 
-  isVerified Boolean @default(false) @map("is_verified")
+  isVerified         Boolean @default(false) @map("is_verified")
   isTwoFactorEnabled Boolean @default(false) @map("is_two_factor_enabled")
 
   method AuthMethod
@@ -35,7 +35,7 @@ model User {
 model Account {
   id String @id @default(uuid())
 
-  type String
+  type     String
   provider String
 
   refreshToken String? @map("refresh_token")
@@ -43,7 +43,7 @@ model Account {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @map("updated_at")
 
-  user User? @relation(fields: [userId], references: [id])
+  user   User?   @relation(fields: [userId], references: [id])
   userId String? @map("user_id")
 
   @@map("accounts")
@@ -52,10 +52,10 @@ model Account {
 model Token {
   id String @id @default(uuid())
 
-  email String
-  token String
-  type TokenType
-  expiresIn DateTime @map("expires_in")
+  email     String
+  token     String
+  type      TokenType
+  expiresIn DateTime  @map("expires_in")
 
   @@map("tokens")
 }
